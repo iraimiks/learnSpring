@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Laon Functions</title>
+</head>
+<body>
+    <h1>Mani aizdevumi</h1>
+    <div>
+            <table>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Date when loan
+                    </th>
+                </tr>
+                <tr th:each="loan: ${loans}">
+                    <td th:utext="${loan.id}"></td>
+                    <td th:utext="${loan.amount}"></td>
+                    <td th:utext="${loan.term}"></td>
+
+                </tr>
+            </table>
+    </div>
+    <a href="/loanwelcome">Submit another message</a>
+
+</body>
+</html>

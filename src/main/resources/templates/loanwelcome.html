@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to my site</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#slider" ).slider({
+                animate: true,
+                value:1,
+                min: 0,
+                max: 1000,
+                step: 10,
+                slide: function(event, ui) {
+                    update(1,ui.value); //changed
+                }
+            });
+            $("#amount").val(0);
+            $("#duration").val(0);
+            $("#amount-label").text(0);
+            $("#duration-label").text(0);
+
+            update();
+        } );
+        function update(slider,val) {
+            //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
+            var $amount = slider == 1?val:$("#amount").val();
+            var $duration = slider == 2?val:$("#duration").val();
+
+            /* commented
+            $amount = $( "#slider" ).slider( "value" );
+            $duration = $( "#slider2" ).slider( "value" );
+             */
+
+            $total = "$" + ($amount * $duration);
+            $( "#amount" ).val($amount);
+            $( "#amount-label" ).text($amount);
+            $( "#duration" ).val($duration);
+            $( "#duration-label" ).text($duration);
+            $( "#total" ).val($total);
+            $( "#total-label" ).text($total);
+
+            $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$amount+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+            $('#slider2 a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$duration+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+        }
+    </script>
+</head>
+<body>
+<h1>Pietikt aizdevumu</h1>
+<div class="col-sm-4">
+    <div class="col-sm-12">
+        <div id="slider"></div>
+    </div>
+    <form action="#" th:action="@{/loanwelcome}" th:object="${loanAdd}" method="POST">
+        <label for="amount" class="col-sm-6 control-label">Amount ($): </label>
+        <span class="help-text">Izvēlēties jūsu aizdevumu summu</span>
+        <div class="col-sm-6">
+            <h3>Aizdevumu summa</h3>
+            <input name="amount"  type="hidden" id="amount" th:value="${amount}">
+            <p class="price lead" id="amount-label"></p>
+        </div>
+        <input name="submit" type="submit" value="submit" />
+    </form>
+    <a href="/myLoans">Mani aizdevumi</a>
+</div>
+
+<!--<form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">-->
+<!--<p>Id: <input type="text" th:field="*{id}" /></p>-->
+<!--<p>Message: <input type="text" th:field="*{content}" /></p>-->
+<!--<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
+<!--</form>-->
+</body>
+</html>
