@@ -52,22 +52,26 @@
     </script>
 </head>
 <body>
-<h1>Pietikt aizdevumu</h1>
+<h1>Applay for loan</h1>
 <div class="col-sm-4">
     <div class="col-sm-12">
         <div id="slider"></div>
     </div>
     <form action="#" th:action="@{/loanwelcome}" th:object="${loanAdd}" method="POST">
         <label for="amount" class="col-sm-6 control-label">Amount ($): </label>
-        <span class="help-text">Izvēlēties jūsu aizdevumu summu</span>
+        <span class="help-text">Choose loan summ</span>
         <div class="col-sm-6">
-            <h3>Aizdevumu summa</h3>
+            <h3>Loan sum</h3>
             <input name="amount"  type="hidden" id="amount" th:value="${amount}">
             <p class="price lead" id="amount-label"></p>
         </div>
         <input name="submit" type="submit" value="submit" />
+        <div th:if="${execptionMessage}">
+            <div>You can apply  loan only 3 times per day</div>
+        </div>
+
     </form>
-    <a href="/myLoans">Mani aizdevumi</a>
+    <a href="/myLoans">Check my loans</a>
 </div>
 
 <!--<form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">-->

@@ -5,7 +5,11 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.text.SimpleDateFormat;
+import java.text.spi.DateFormatProvider;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 
 @Data
@@ -15,11 +19,15 @@ public class LoanApplay {
     @GeneratedValue
     Long id;
     int amount;
-    LocalDateTime term;
+    String term;
+    int backAmount;
+
     public LoanApplay(){}
 
-    public LoanApplay(int amount) {
+    public LoanApplay(int amount, String term) {
+
         this.amount = amount;
-        this.term = LocalDateTime.now();
+        this.term = term;
+        this.backAmount = (int)(amount*1.1);
     }
 }

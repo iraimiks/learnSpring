@@ -4,32 +4,35 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Laon Functions</title>
+    <title>Laons Functions</title>
 </head>
 <body>
-    <h1>Mani aizdevumi</h1>
+    <h1>My Loans</h1>
     <div>
             <table>
                 <tr>
                     <th>
-                        Id
+                        Loan amount
                     </th>
                     <th>
-                        Amount
+                        Date until loan
                     </th>
                     <th>
-                        Date when loan
+                        Sum what need get back
                     </th>
+                    <!--<th>-->
+                        <!--Pagarināt-->
+                    <!--</th>-->
                 </tr>
                 <tr th:each="loan: ${loans}">
-                    <td th:utext="${loan.id}"></td>
                     <td th:utext="${loan.amount}"></td>
                     <td th:utext="${loan.term}"></td>
-
+                    <td th:utext="${loan.backAmount}"></td>
+                    <!--<td ><form th:action="@{/myLoans/{id}(id=${loan.id})}" th:object="${loanexist}"><input type="submit" value="Update User"></form></td>-->
                 </tr>
             </table>
     </div>
-    <a href="/loanwelcome">Submit another message</a>
+    <a href="/loanwelcome">Submit anouterh loan</a>
 
 </body>
 </html>
