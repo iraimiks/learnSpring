@@ -77,7 +77,7 @@ public class LoanApplayController {
             LoanApplay newLoan = new LoanApplay(loan,expireDate.format(dateTimeFormatter));
             int sum = loans.stream().filter(o->o.getAmount()>0).mapToInt(o->o.getAmount()).sum();
 
-            if(loans.size()<3&&sum<666){
+            if(loans.size()<=2){
                 loans.add(newLoan);
                 log.info(""+loans.toString());
                 log.info(""+sum);
